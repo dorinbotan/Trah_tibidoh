@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <link tyle="text/css" rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+</head>
+<body>
+    <div id="predefined">
+        <p id="current_fa"></p>
+
+        <div id="predefined_fa">
+            <a href="#" onclick="setURL('https://www.google.com')" class="fa fa-google"></a>
+            <a href="#" onclick="setURL('https://www.facebook.com')" class="fa fa-facebook"></a>
+            <a href="#" onclick="setURL('https://www.youtube.com')" class="fa fa-youtube"></a>
+            <a href="#" onclick="setURL('https://www.twitter.com')" class="fa fa-twitter"></a>
+            <a href="#" onclick="setURL('https://www.instagram.com')" class="fa fa-instagram"></a>
+            <a href="#" onclick="setURL('https://www.tumblr.com')" class="fa fa-tumblr"></a>
+            <a href="#" onclick="setURL('https://www.reddit.com')" class="fa fa-reddit"></a>
+            <a href="#" onclick="setURL('https://www.linkedin.com')" class="fa fa-linkedin"></a>
+            <a href="#" onclick="setURL('https://www.pinterest.com')" class="fa fa-pinterest"></a>
+            <a href="#" onclick="setURL('https://www.dribbble.com')" class="fa fa-dribbble"></a>
+            <a href="#" onclick="setURL('https://www.vimeo.com')" class="fa fa-vimeo"></a>
+            <a href="#" onclick="setURL('https://www.flickr.com')" class="fa fa-flickr"></a>
+        </div>
+        <input id="custom_fa" type="text" placeholder="my_custom_url.com"/>
+        <button id="custom_fa_button" onClick="setURL()">Submit</button>
+    </div>
+   
+    <script>
+        function setURL(url) {
+            if(!url) {
+                if(!document.getElementById('custom_fa').value) {
+                    alert('Empty URL not allowed');
+                    return;
+                }
+
+                url = 'https://www.' + document.getElementById('custom_fa').value;
+            }
+
+            var request = new XMLHttpRequest();
+            request.open('POST', 'http://47.254.169.34:8080', true);
+            request.send(`{"url":"${url}"}`);
+        }
+        
+        function displayCurrentURL(res) {
+            document.getElementById('current_fa').innerHTML = res.target.response;
+        }
+    </script>
+</body>
+</html>
