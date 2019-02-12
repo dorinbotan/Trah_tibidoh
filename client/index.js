@@ -10,7 +10,7 @@ function main() {
     return;
   }
 
-  connection = new WebSocket('ws://47.254.169.34:8080');
+  connection = new WebSocket('wss://www.dorinbotan.com:8080');
   connection.onopen = connectionOpened;
   connection.onerror = connectionError;
   connection.onmessage = messageReceived;

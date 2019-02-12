@@ -39,12 +39,8 @@
             }
 
             var request = new XMLHttpRequest();
-            request.open('POST', 'http://47.254.169.34:8080', true);
+            request.open('POST', 'https://www.dorinbotan.com:8080', true);
             request.send(`{"url":"${url}"}`);
-        }
-        
-        function displayCurrentURL(res) {
-            document.getElementById('current_fa').innerHTML = res.target.response;
         }
     </script>
 </body>
